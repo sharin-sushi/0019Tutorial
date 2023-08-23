@@ -1,3 +1,6 @@
+cd t0019Go\cmd
+cd t0019Next\...\pages
+-------
 1. Next.js導入
     cd 
     npx create-next-app
@@ -23,11 +26,12 @@ go mod init "github.com/sharin-sushi/0019testGin.git"
 
 4. git init
     cd rootディレクトリ
+    0019testGin>
     git init
     git add .
     git commit -m "first commit"
     git branch -M main
-    git remote add origin "https://github.com/sharin-sushi/0012GoNext.git"
+    git remote add origin "https://github.com/sharin-sushi/0019testGin.git"
     　//HTTPにすること。間違えたら　git remote remove origin　でやり直し
     git push -u origin main
 
