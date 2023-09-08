@@ -12,10 +12,6 @@ func getTop(c *gin.Context) {
 	c.HTML(http.StatusOK, "home.html", nil)
 }
 
-// ---------
-
-// まずは接続確認がしたい→readしたい
-
 const test01_users = "test01_users" //Mysql側のtable名
 
 var tmpl *template.Template

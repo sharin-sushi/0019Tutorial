@@ -14,5 +14,15 @@ func GetRouter() *gin.Engine {
 	router.GET("/login", getLogin)
 	router.POST("/login", postLogin)
 
+	//自分の開発用
+
+	// パスワード生成
+	router.GET("/test", gettestEnPw)
+	router.POST("/test", posttestEnPw)
+
+	//パスワード一致確認
+	router.GET("/test2", gettestEnPw2)
+	router.POST("/test2", posttestEnPw2)
+
 	return router
 }

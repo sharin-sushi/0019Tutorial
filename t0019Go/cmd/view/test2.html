@@ -1,0 +1,16 @@
+<h1>pw一致確認</h1>
+<form method="POST" action="/test2">
+    <p>平値： <input type="text" name="password" /></p>
+    <p>bcrypt値： <input type="password" name="enpassword" /></p>
+    <p><input type="submit" value="確認" /> 
+  
+
+</form>
+
+<p>平値： {{.pw}}</p>
+<p>bcrypt値： {{.enPw}}</p>
+<p>判定： {{.result}}</p>
+
+<a href="/test"><input type="button" value="pw生成ページへ" /></a></p>
+<a href="/"><input type="button" value="topへ" /></a></p>
+<!-- gin.H{"pw": pw, "enPw": enPw, "result": result} -->
