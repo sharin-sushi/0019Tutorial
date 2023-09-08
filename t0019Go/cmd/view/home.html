@@ -1,0 +1,15 @@
+<h1>TOP</h1>
+{{ if .user.LoggedIn }}
+<p>ログイン中【{{ .user.UserId }}】</p>
+{{ end }}
+<a href="/signup">会員登録</a>
+<a href="/login">ログイン</a>
+<a href="/test">test用/a>
+
+
+
+
+
+<!-- {{ if .user.LoggedIn }}　～　{{ end }}
+   　 .user.LoggedIn の値が trueであれば～部分を表示 -->
+

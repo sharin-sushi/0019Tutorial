@@ -1,0 +1,17 @@
+<h1>pw生成</h1>
+<form method="POST" action="/test">
+    <!-- <p>ユーザーID： <input type="text" name="user_id" /></p> -->
+    <p>パスワード： <input type="password" name="password" /></p>
+    <p><input type="submit" value="変換" /> 
+</form>
+<p>入力値： {{.pw}}</p>
+<p>bcrypt値： {{.enPw}}</p>
+
+<a href="/"><input type="button" value="戻る" /></a></p>
+
+
+<a href="/test2"><input type="button" value="pw一致確認ページへ" /></a></p>
+
+<!-- 
+<p>入力されたパスワード： {{.toPw}}</p>
+<p>暗号化後のパスワード： {{.toEnPw}}</p> -->
