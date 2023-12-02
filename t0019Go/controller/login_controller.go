@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"fmt"
 	"net/http"
 
@@ -80,5 +82,17 @@ func posttestEnPw(c *gin.Context) {
 	enPw, _ := crypto.PasswordEncrypt(pw) //bcript値が返ってくる
 	fmt.Println("変換後 pw=", enPw)
 
-	c.HTML(http.StatusOK, "test.html", gin.H{"pw": pw, "enPw": enPw})
+	c.HTML(http.StatusOK, "test1.html", gin.H{"pw": pw, "enPw": enPw})
+}
+
+//ランダムな32byte(256bit)の文字列生成 Base64エンコーディングの形式
+func get32byte(c *gin.Context) {
+	bytes := make([]byte, 32)
+	_, err := rand.Read(bytes)
+	if err != nil {
+		panic(err)
+	}
+	ThreeTwoCode := base64.StdEncoding.EncodeToString(bytes)
+	fmt.Println("生成した32バイト文字列=", ThreeTwoCode)
+	c.HTML(http.StatusOK, "test3.html", gin.H{"thTw": ThreeTwoCode})
 }

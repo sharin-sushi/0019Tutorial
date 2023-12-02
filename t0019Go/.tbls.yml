@@ -1,0 +1,13 @@
+dsn: mysql://USER:PASSOWRD@localhost:3306/DBNAME?sslmode=disable
+
+
+# dsn: {{MYSQL_DATABASE}}://{{MYSQL_USER}}:{{MYSQL_PASSWORD}}@localhost:3306/dbname?sslmode=disable
+
+docPath: /txt.txt
+
+
+
+
+# VSCODE上で以下を実施
+# cat .tbls.template.yml |sed "s/{{MYSQL_DATABASE}}/$MYSQL_DATABASE/g" | sed "s/{{DB_USER}}/$DB_USER/g" | sed "s/{{DB_PASS}}/$DB_PASS/g" > .tbls.yml
+

@@ -44,8 +44,19 @@ go get "github.com/sharin-sushi/0010/test/internal/article"
 
 
 6. 何かしら変更したら
-    git branch ~~ (branch作成)
-    git checkout ~~(~~を使用)
+    git checkout -b ~~(~~を使用) -bで新規作成しつつ使用
     git add .  ←そのディレクトリ以下全部の . 
-    git commit -m "コメント"
+    git commit -m "コメント #1"　　#{issue番号}
     git push origin -u ~~
+
+　　コメント修正
+    push前　git commit --amend してenter→テキスト編集
+    push後　↑やってから　git push --force-with-lease origin main
+
+    commit取り消し
+    push前　git reset [打ち消したいコミットID]
+    push後  git reset --soft    //commitのみ取り消し
+            git reset --mixed   //commitとaddの取り消し
+            git reset --hard    //全部を取り消
+    commit取り消しの取り消し
+    git reflog　(略)

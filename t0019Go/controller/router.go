@@ -5,24 +5,35 @@ import (
 )
 
 func GetRouter() *gin.Engine {
-	router := gin.Default()
-	router.LoadHTMLGlob("view/*.html")
+	r := gin.Default()
+	r.LoadHTMLGlob("view/*.html")
 
-	router.GET("/", getTop)
-	router.GET("/signup", getSignup)
-	router.POST("/signup", postSignup)
-	router.GET("/login", getLogin)
-	router.POST("/login", postLogin)
+	r.GET("/", getTop)
+	r.GET("/signup", getSignup)
+	r.POST("/signup", postSignup)
+	r.GET("/login", getLogin)
+	r.POST("/login", postLogin)
 
 	//自分の開発用
 
+	// encrypt
 	// パスワード生成
-	router.GET("/test", gettestEnPw)
-	router.POST("/test", posttestEnPw)
-
+	r.GET("/test", gettestEnPw)
+	r.POST("/test", posttestEnPw)
 	//パスワード一致確認
-	router.GET("/test2", gettestEnPw2)
-	router.POST("/test2", posttestEnPw2)
+	r.GET("/test2", gettestEnPw2)
+	r.POST("/test2", posttestEnPw2)
 
-	return router
+	// ランダム値生成
+	// 32byte
+	r.GET("/test3", get32byte)
+	// router.POST("/test3", posttestEnPw2)
+
+	aes := r.Group("/test4_aes")
+	{
+		aes.GET("/", aesHome)
+		aes.GET("/encrypt", toAes)
+		aes.GET("/decrypt", deAes)
+	}
+	return r
 }

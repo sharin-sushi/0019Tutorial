@@ -1,0 +1,19 @@
+<h1>AES</h1>
+<h3>
+<li>暗号化</li>
+<form method="POST" action="/to_aes">
+    <!-- <p>ユーザーID： <input type="text" name="user_id" /></p> -->
+    <p>パスワード： <input type="password" name="password" /></p>
+    <p><input type="submit" value="変換" /> 
+</form>
+<p>入力値： {{.pw}}</p>
+<p>bcrypt値： {{.enPw}}</p>
+
+<a href="/"><input type="button" value="戻る" /></a></p>
+
+<li>複合化</li>
+
+</h3>
+<a href="/test2"><input type="button" value="pw一致確認ページへ" /></a></p>
+<a href="/test3"><input type="button" value="ランダム値生成ページへ" /></a></p>
+

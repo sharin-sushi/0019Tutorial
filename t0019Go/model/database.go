@@ -5,6 +5,7 @@ import (
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -12,8 +13,19 @@ import (
 var Db *gorm.DB
 
 // var Dbsql *sql.DB //テスト用
-
+func setEnv() {
+	//docker外ではPCのGO_ENVを取得し、godotenvが.dnvを取得。
+	//docker上ではdockercomposeが.envを取得。
+	err := godotenv.Load("../.env")
+	if err == nil {
+		checkFile := os.Getenv("GO_ENV")
+		fmt.Printf(".env file has (GO_ENV = %v )\n", checkFile)
+	} else {
+		fmt.Print("godotenv failed getting .env file, but got ENV datas from dockercompose.yaml insterd.\n")
+	}
+}
 func init() {
+	setEnv()
 	user := os.Getenv("MYSQL_USER")
 	pw := os.Getenv("MYSQL_PASSWORD")
 	db_name := os.Getenv("MYSQL_DATABASE")

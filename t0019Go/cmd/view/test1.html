@@ -11,7 +11,16 @@
 
 
 <a href="/test2"><input type="button" value="pw一致確認ページへ" /></a></p>
+<a href="/test3"><input type="button" value="ランダム値生成ページへ" /></a></p>
 
 <!-- 
 <p>入力されたパスワード： {{.toPw}}</p>
 <p>暗号化後のパスワード： {{.toEnPw}}</p> -->
+
+<h1>ランダム値生成</h1>
+<p>32byte(256bit): {{.pw}}</p>
+<form method="GET" action="/test">
+    <!-- <p>ユーザーID： <input type="text" name="user_id" /></p> -->
+    <p>パスワード： <input type="password" name="password" /></p>
+    <p><input type="submit" value="変換" /> 
+</form>
