@@ -11,20 +11,29 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//  https://github.com/sharin-sushi/0015Laboratoryn にて
+
 // /aes
 func aesHome(c *gin.Context) { //"/"
 	c.HTML(http.StatusOK, "test4_aes.html", nil)
 }
 
+var text string
+var key string
+
 func toAes(c *gin.Context) { //"/to_aes"
-	var text string
-	var key string
-	Encrypt(text, key)
-	c.HTML(http.StatusOK, "test3.html", gin.H{"thTw": ThreeTwoCode})
+	text := c.PostForm("user_id")
+	key := c.PostForm("key")
+
+	enxryptedPassword, _, _ := Encrypt(text, key)
+	c.HTML(http.StatusOK, "test3.html", gin.H{"thTw": enxryptedPassword})
 }
 func deAes(c *gin.Context) { //"/de_aes"
-
-	c.HTML(http.StatusOK, "test3.html", gin.H{"thTw": ThreeTwoCode})
+	text := c.PostForm("user_id")
+	key := c.PostForm("key")
+	iv := c.PostForm("iv")
+	decryptedPassword, _ := Decrypt(text, key, iv)
+	c.HTML(http.StatusOK, "test3.html", gin.H{"thTw": decryptedPassword})
 }
 
 //////////////////////////////////////////////////////
@@ -45,14 +54,14 @@ func Pkcs7Pad(data []byte) []byte {
 }
 
 func Encrypt(dataString, keyString string) (iv []byte, encrypted []byte, err error) {
-	key = hex.DecodeString(key)
-	data = hex.DecodeString(dataString)
+	keyByte, _ := hex.DecodeString(keyString)
+	data, _ := hex.DecodeString(dataString)
 
 	iv, err = GenerateIV()
 	if err != nil {
 		return nil, nil, err
 	}
-	block, err := aes.NewCipher(key)
+	block, err := aes.NewCipher(keyByte)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -71,14 +80,15 @@ func Pkcs7Unpad(data []byte) []byte {
 }
 
 func Decrypt(data, keyString, iv string) ([]byte, error) {
-	key = hex.DecodeString(key)
-	iv = hex.DecodeString(ivString)
-	block, err := aes.NewCipher(key)
+	byteKey, _ := hex.DecodeString(key)
+	byteIv, _ := hex.DecodeString(iv)
+	block, err := aes.NewCipher(byteKey)
 	if err != nil {
 		return nil, err
 	}
 	decrypted := make([]byte, len(data))
-	cbcDecrypter := cipher.NewCBCDecrypter(block, iv)
+	dataByte := //いい感じのbyteに変換する
+	cbcDecrypter := cipher.NewCBCDecrypter(block, byteIv)
 	cbcDecrypter.CryptBlocks(decrypted, data)
 	return Pkcs7Unpad(decrypted), nil
 }
